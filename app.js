@@ -100,7 +100,7 @@ const fetchweather = (name) => {
       console.log(kapsa.children[0]);
       kapsa.innerHTML += `
 <div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
-   <div class="tarih text-center gap-0 col-12 border-bottom h3  ">${name} </div>
+   <div class="tarih text-center gap-0 col-12 border-bottom h3  ">${name}, ${country}</div>
    <div class="tarih d-flex gap-0 col-10 h6  m-2">${tarih}</div>
    <div class="üst">
     <div class="üst-sol">${temp.toFixed()}°</div>
