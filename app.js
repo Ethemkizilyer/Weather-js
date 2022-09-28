@@ -84,20 +84,22 @@ const fetchweather = (name) => {
     const { temp, temp_max, temp_min, feels_like } = main;
     const { lat, lon } = coord;
 
-    if (!liste.includes(input.value.toLocaleLowerCase())) {
-      if (liste.length > 3) {
+    if (!liste.includes(input.value.toLocaleLowerCase()) || input.value == "") {
+      if(input.value !==""){
+      liste.push(input.value.toLocaleLowerCase());}
+      if (liste.length > 4) {
+liste = liste.slice(1, 5);
+     console.log("burada");
+
         kapsa.removeChild(kapsa.children[0]);
         kapsa;
-
-        liste.push(input.value.toLocaleLowerCase());
-        liste = liste.slice(1, 5);
+console.log("ilk");
+        
 
         localStorage.setItem("LOCAL", JSON.stringify(liste));
-      } else {
-        if (!input.value == "") liste.push(input.value.toLocaleLowerCase());
-      }
+      } 
+    
 
-      console.log(kapsa.children[0]);
       kapsa.innerHTML += `
 <div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
    <div class="tarih text-center gap-0 col-12 border-bottom h3  ">${name}, ${country}</div>
@@ -136,7 +138,9 @@ const fetchweather = (name) => {
 
       localStorage.setItem("LOCAL", JSON.stringify(liste));
       input.value = "";
-    } else {
+    } 
+    else {
+      console.log("son");
       alert("Zaten eklenmiş");
       input.value = "";
       localStorage.setItem("LOCAL", JSON.stringify(liste));
@@ -149,7 +153,7 @@ const renderSavedTodos = () => {
   let liste = JSON.parse(localStorage.getItem("LOCAL")) || [];
   liste.forEach((ad) => {
     fetchweather(ad);
-  });
+  });localStorage.setItem("LOCAL", JSON.stringify(liste));
 };
 
-localStorage.setItem("LOCAL", JSON.stringify(liste));
+
