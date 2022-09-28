@@ -85,20 +85,19 @@ const fetchweather = (name) => {
     const { lat, lon } = coord;
 
     if (!liste.includes(input.value.toLocaleLowerCase()) || input.value == "") {
-      if(input.value !==""){
-      liste.push(input.value.toLocaleLowerCase());}
+      if (input.value !== "") {
+        liste.push(input.value.toLocaleLowerCase());
+      }
       if (liste.length > 4) {
-liste = liste.slice(1, 5);
-     console.log("burada");
+        liste = liste.slice(1, 5);
+        console.log("burada");
 
         kapsa.removeChild(kapsa.children[0]);
         kapsa;
-console.log("ilk");
-        
+        console.log("ilk");
 
         localStorage.setItem("LOCAL", JSON.stringify(liste));
-      } 
-    
+      }
 
       kapsa.innerHTML += `
 <div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
@@ -138,8 +137,7 @@ console.log("ilk");
 
       localStorage.setItem("LOCAL", JSON.stringify(liste));
       input.value = "";
-    } 
-    else {
+    } else {
       console.log("son");
       alert("Zaten eklenmiş");
       input.value = "";
@@ -153,7 +151,6 @@ const renderSavedTodos = () => {
   let liste = JSON.parse(localStorage.getItem("LOCAL")) || [];
   liste.forEach((ad) => {
     fetchweather(ad);
-  });localStorage.setItem("LOCAL", JSON.stringify(liste));
+  });
+  localStorage.setItem("LOCAL", JSON.stringify(liste));
 };
-
-
