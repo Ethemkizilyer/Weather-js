@@ -145,7 +145,7 @@ liste.splice(ort,1)
         ez.addEventListener("click", (e) => {
           let asd =
             e.target.parentElement.nextElementSibling.firstChild.innerText.toLocaleLowerCase();
-console.log("burda");
+console.log(asd);
           localStorage.setItem("LOCAL", JSON.stringify(liste));
           if (liste.includes(asd)) {
             console.log(1);
