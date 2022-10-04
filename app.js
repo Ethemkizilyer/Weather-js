@@ -89,19 +89,21 @@ const fetchweather = (name) => {
         liste.push(input.value.toLocaleLowerCase());
       }
       if (liste.length > 4) {
-        liste = liste.slice(1, 5);
         console.log("burada");
-
-        kapsa.removeChild(kapsa.children[0]);
+let bakar = kapsa.children[3].firstChild.firstChild.nextElementSibling.firstChild.innerText.toLocaleLowerCase();
+console.log(bakar);
+let ort = liste.indexOf(bakar)
+liste.splice(ort,1)
+        kapsa.removeChild(kapsa.children[3]);
         kapsa;
-        console.log("ilk");
 
         localStorage.setItem("LOCAL", JSON.stringify(liste));
       }
 
-      kapsa.innerHTML += `
-<div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
-   <div class="tarih text-center gap-0 col-12 border-bottom h3  ">${name}, ${country}</div>
+      const list = document.createElement("div");
+      list.className = "içerik";
+      list.innerHTML = `<div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
+   <div class="tarih text-center gap-0 col-12 border-bottom h3  "><span>${name}</span><span>, ${country}</span></div>
    <div class="tarih d-flex gap-0 col-10 h6  m-2">${tarih}</div>
    <div class="üst">
     <div class="üst-sol">${temp.toFixed()}°</div>
@@ -117,19 +119,43 @@ const fetchweather = (name) => {
   </div>
 </div>
 `;
+      kapsa.prepend(list);
+
+      //       kapsa.innerHTML += `
+      // <div class="kutu card d-flex " ><button class="sil"><i class="fa-solid fa-xmark"></i></button>
+      //    <div class="tarih text-center gap-0 col-12 border-bottom h3  ">${name}, ${country}</div>
+      //    <div class="tarih d-flex gap-0 col-10 h6  m-2">${tarih}</div>
+      //    <div class="üst">
+      //     <div class="üst-sol">${temp.toFixed()}°</div>
+      //     <div class="üst-sag"><img src=http://openweathermap.org/img/w/${icon}.png alt=""></div>
+
+      //    </div>
+      //    <div class="alt">
+      //    <div class="alt-sol">
+      //     <p class="his">Gibi hissettiriyor ${feels_like.toFixed()}°</p>
+      //     <p class="gün">Gün ${temp_max.toFixed()}°↓ Gece ${temp_min.toFixed()}°↑</p>
+      //    </div>
+      //    <div class="alt-sag">${description}</div>
+      //   </div>
+      // </div>
+      // `;
 
       const sil = document.querySelectorAll(".sil");
       sil.forEach((ez) => {
         ez.addEventListener("click", (e) => {
           let asd =
-            e.target.parentElement.nextElementSibling.innerText.toLocaleLowerCase();
-          if (liste.shift(asd)) {
-            console.log("burası");
-            console.log(liste.includes(asd));
-            e.target.parentElement.parentElement.remove();
-            console.log(
-              e.target.parentElement.nextElementSibling.innerText.toLocaleLowerCase()
-            );
+            e.target.parentElement.nextElementSibling.firstChild.innerText.toLocaleLowerCase();
+
+          localStorage.setItem("LOCAL", JSON.stringify(liste));
+          if (liste.includes(asd)) {
+            console.log(1);
+            let b = liste.indexOf(asd);
+            if (liste.length == 1) {
+              liste = [];
+              e.target.parentElement.parentElement.parentElement.remove();
+            }
+            liste.splice(b, 1);
+            e.target.parentElement.parentElement.parentElement.remove();
           }
           localStorage.setItem("LOCAL", JSON.stringify(liste));
         });
