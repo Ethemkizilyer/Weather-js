@@ -113,7 +113,7 @@ liste.splice(ort,1)
    <div class="alt">
    <div class="alt-sol">
     <p class="his">Gibi hissettiriyor ${feels_like.toFixed()}°</p>
-    <p class="gün">Gün ${temp_max.toFixed()}°↓ Gece ${temp_min.toFixed()}°↑</p>
+    <p class="gün">Min ${temp_max.toFixed()}°↓ Maks ${temp_min.toFixed()}°↑</p>
    </div>
    <div class="alt-sag">${description}</div>
   </div>
